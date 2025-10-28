@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Mick Works - graphics</title>
+    <subtitle>Stories by Mick</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://mick.works/tags/graphics/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://mick.works"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-10-28T00:00:00+00:00</updated>
+    <id>https://mick.works/tags/graphics/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Clustered Light Shading VR Renderer</title>
+        <published>2025-10-28T00:00:00+00:00</published>
+        <updated>2025-10-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Mick van Gelderen
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://mick.works/projects/clustered-light-shading/"/>
+        <id>https://mick.works/projects/clustered-light-shading/</id>
+        
+        <content type="html" xml:base="https://mick.works/projects/clustered-light-shading/">&lt;p&gt;&lt;strong&gt;NOTE: This post is generated with AI (based on an actual project I did) to get some content here. I advise against reading it since it&#x27;s aweful. A manual rewrite is pending...&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Virtual reality rendering presents unique challenges that push the boundaries of real-time graphics. When I set out to build a VR-ready renderer, I knew I wanted to explore advanced lighting techniques while maintaining the performance necessary for comfortable VR experiences. This led me to develop a clustered light shading implementation using Rust and OpenGL.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;clustered-vr-renderer.jpg&quot; alt=&quot;VR-ready renderer showing Sponza scene&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-challenge&quot;&gt;The Challenge&lt;&#x2F;h2&gt;
+&lt;p&gt;Rendering complex scenes in VR requires maintaining high frame rates while rendering the same scene twice—once for each eye. Traditional forward rendering struggles with numerous dynamic lights, while deferred rendering has its own set of trade-offs. Clustered light shading offers an elegant middle ground, dividing the view frustum into clusters and efficiently determining which lights affect each cluster.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;technical-approach&quot;&gt;Technical Approach&lt;&#x2F;h2&gt;
+&lt;p&gt;The renderer is built entirely in Rust, leveraging the language&#x27;s performance characteristics and memory safety guarantees. This proved particularly valuable when working with the complex state management required for OpenGL applications. The codebase integrates with SteamVR on Linux, enabling testing with actual VR hardware.&lt;&#x2F;p&gt;
+&lt;p&gt;One interesting challenge was sphere generation for light volumes. Rather than using traditional lookup tables, I implemented iterative subdivision of platonic solids with arc-length interpolation. This approach provides more control over the tessellation and produces high-quality spheres without pre-computed data.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;clustered-spheres.jpg&quot; alt=&quot;Sphere generation comparison&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The rendering pipeline separates concerns into distinct passes, with careful attention to frame timing—critical for VR where even minor latency is immediately noticeable. The implementation includes hot shader reloading, which significantly speeds up iteration when tuning visual effects.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;clustered-hot-reloading.gif&quot; alt=&quot;Hot shader reloading in action&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;performance-considerations&quot;&gt;Performance Considerations&lt;&#x2F;h2&gt;
+&lt;p&gt;The current implementation makes approximately 8,000 OpenGL calls per frame for material management. While this demonstrates the rendering capabilities, it also highlights opportunities for optimization. Future improvements include implementing bindless textures and multi-draw commands, which would dramatically reduce the driver overhead.&lt;&#x2F;p&gt;
+&lt;p&gt;The Sponza scene serves as the primary test environment, providing a good mix of geometric complexity and material variety. Rendering it in real-time with ambient occlusion while maintaining VR frame rates demonstrates the viability of the approach.&lt;&#x2F;p&gt;
+&lt;p&gt;As a fun aside, the project also includes a virtual keyboard with realistic key pressure physics—a useful tool for exploring VR interaction paradigms.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;clustered-typing-simulator.jpg&quot; alt=&quot;Virtual keyboard simulator&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-i-learned&quot;&gt;What I Learned&lt;&#x2F;h2&gt;
+&lt;p&gt;Working at the intersection of systems programming and graphics has been incredibly rewarding. Rust&#x27;s type system caught numerous bugs that would have been runtime errors in C++, particularly around resource lifetime management and thread safety. The ecosystem around Rust for graphics development has matured significantly, with solid bindings for OpenGL and VR APIs.&lt;&#x2F;p&gt;
+&lt;p&gt;The project reinforced the importance of profiling and measurement in graphics programming. VR applications have strict performance budgets, and understanding where time is spent each frame is essential for optimization. Frame timing analysis tools built into the project proved invaluable for identifying bottlenecks.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;future-directions&quot;&gt;Future Directions&lt;&#x2F;h2&gt;
+&lt;p&gt;The next major milestone is implementing the actual clustered light shading algorithm with support for multiple dynamic light sources. The current architecture provides a solid foundation for this work. Additional optimizations around bindless rendering and reducing draw call overhead will help scale to more complex scenes.&lt;&#x2F;p&gt;
+&lt;p&gt;Virtual reality continues to push the boundaries of real-time rendering, and exploring these techniques hands-on has deepened my understanding of modern graphics pipelines. The full source code is available on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mickvangelderen&#x2F;clustered-light-shading&#x2F;&quot;&gt;GitHub&lt;&#x2F;a&gt; for anyone interested in exploring these concepts further.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
